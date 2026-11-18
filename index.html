@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KAWAII CRAFT</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem("gelap") === "1") {
+      document.documentElement.classList.add("gelap");
+    }
+  </script>
+</head>
+<body>
+
+  <nav id="bar">
+    <a href="index.html" class="logo-mini">
+      <img class="logo" src="logo.jpeg" alt="Logo">
+      <span class="logo-text">KAWAII CRAFT</span>
+    </a>
+
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="#katalog">Produk</a>
+      <a href="tentang.html">Tentang kami</a>
+    </div>
+
+    <div class="nav-kanan">
+      <button id="btnGelap" onclick="toggleGelap()" title="Ubah Mode Gelap/Terang">🌙</button>
+      <button onclick="bukaKeranjang()" title="Buka Keranjang">🛒 <span id="jumlah">0</span></button>
+    </div>
+  </nav>
+
+  <section class="home" id="beranda">
+    <div class="home-text">
+      <h2>
+        Kreativitas kecil,
+        <span>kenangan yang besar.</span>
+      </h2>
+
+      <p>
+        Selamat datang di KAWAII CRAFT STORE!
+        Kami menyediakan berbagai produk kreatif dan handmade
+        dengan desain unik dan menarik. Mulai dari poster anime
+        favorit hingga frame foto flanel yang lucu.
+        Setiap produk dibuat dengan penuh ketelitian
+        untuk menemani momen spesialmu.
+      </p>
+
+      <button onclick="document.getElementById('katalog').scrollIntoView({behavior:'smooth'})">
+        Lihat Produk →
+      </button>
+    </div>
+
+    <div class="home-gallery">
+      <div class="home-card">
+        <img src="POSTER.jpeg" alt="Poster Anime">
+
+        <div class="home-caption">
+          <h3>Poster</h3>
+          <p>
+            Poster anime dan karakter favorit
+            dengan cetakan berwarna dan desain menarik.
+          </p>
+        </div>
+      </div>
+
+      <div class="home-card">
+        <img src="FRAME FOTO FLANEL.jpeg" alt="Frame Foto Flanel">
+
+        <div class="home-caption">
+          <h3>Frame Foto Flanel</h3>
+          <p>
+            Frame handmade dari kain flanel
+            yang lucu untuk menyimpan kenangan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-fitur">
+    <div class="fitur-item">
+      <h3>100% Handmade</h3>
+      <p>Setiap produk dibuat tangan dengan teliti dan penuh perhatian.</p>
+    </div>
+
+    <div class="fitur-item">
+      <h3>Desain Custom</h3>
+      <p>Pilih karakter dan ukuran favoritmu sesuai selera.</p>
+    </div>
+
+    <div class="fitur-item">
+      <h3>Kualitas Terbaik</h3>
+      <p>Bahan pilihan rapi dan tahan lama untuk kepuasan maksimal.</p>
+    </div>
+
+    <div class="fitur-item">
+      <h3>Pemesanan Cepat</h3>
+      <p>Proses order praktis dan langsung terhubung via WhatsApp.</p>
+    </div>
+  </section>
+
+  <section class="home-cara">
+    <h2>Cara Pemesanan</h2>
+    <div class="langkah">
+      <div class="langkah-item">
+        <b>1</b>
+        <h3>Pilih Produk</h3>
+        <p>Pilih produk favoritmu dari katalog kami.</p>
+      </div>
+
+      <div class="langkah-item">
+        <b>2</b>
+        <h3>Pesan / Keranjang</h3>
+        <p>Klik tombol keranjang atau langsung klik Pesan.</p>
+      </div>
+
+      <div class="langkah-item">
+        <b>3</b>
+        <h3>Isi Data</h3>
+        <p>Lengkapi formulir nama, alamat, dan metode pembayaran.</p>
+      </div>
+
+      <div class="langkah-item">
+        <b>4</b>
+        <h3>Kirim via WA</h3>
+        <p>Konfirmasi pesanan dan proses langsung via WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="katalog">
+    <h2 class="judul-produk">Katalog Produk</h2>
+    <main id="katalog-list"></main>
+  </section>
+
+  <div id="modal" class="modal">
+    <div class="isi">
+      <h2 id="judul">🛒 Keranjang</h2>
+      <div id="daftar"></div>
+      <div id="total">Total: Rp 0</div>
+
+      <input type="text" id="nama" placeholder="Nama Lengkap" required>
+      <textarea id="alamat" placeholder="Alamat Pengiriman" rows="3" required></textarea>
+      <textarea id="catatan" placeholder="Catatan Tambahan (opsional)" rows="2"></textarea>
+      <select id="bayar">
+        <option value="Transfer Bank">Transfer Bank</option>
+        <option value="COD / Bayar di Tempat">COD / Bayar di Tempat</option>
+        <option value="E-Wallet (Dana / GoPay / OVO)">E-Wallet (Dana / GoPay / OVO)</option>
+      </select>
+
+      <button onclick="pesanSemua()">Pesan Sekarang</button>
+      <button id="btnKosong" class="merah" onclick="kosongkan()">Kosongkan Keranjang</button>
+      <button onclick="tutupKeranjang()">Tutup</button>
+    </div>
+  </div>
+
+  <div id="popupKonfirmasi" class="popup-konfirmasi">
+    <div class="kotak-konfirmasi">
+      <button class="tutup-popup" onclick="tutupKonfirmasi()">×</button>
+      <h2>Konfirmasi Pesanan</h2>
+      <p class="subjudul">Pastikan detail pesanan kamu sudah sesuai</p>
+
+      <div class="detail-pesanan">
+        <div class="detail-baris">
+          <span>Produk:</span>
+          <b id="konfirmasiProduk" style="white-space: pre-line;">-</b>
+        </div>
+        <div class="detail-baris">
+          <span>Jumlah:</span>
+          <b id="konfirmasiJumlah">-</b>
+        </div>
+        <div class="detail-baris">
+          <span>Total:</span>
+          <b id="konfirmasiTotal">-</b>
+        </div>
+        <div class="detail-baris">
+          <span>Nama:</span>
+          <b id="konfirmasiNama">-</b>
+        </div>
+        <div class="detail-baris">
+          <span>Alamat:</span>
+          <b id="konfirmasiAlamat">-</b>
+        </div>
+        <div class="detail-baris">
+          <span>Pembayaran:</span>
+          <b id="konfirmasiBayar">-</b>
+        </div>
+      </div>
+
+      <div class="aksi-konfirmasi">
+        <button class="btn-batal" onclick="tutupKonfirmasi()">Batal</button>
+        <button class="btn-lanjut" onclick="lanjutPesan()">Lanjut ke WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="info" class="modal">
+    <div class="isi">
+      <h2 id="infoJudul">Detail Produk</h2>
+      <p id="infoIsi"></p>
+      <button onclick="if(document.getElementById('info')) document.getElementById('info').classList.remove('buka')">Tutup</button>
+    </div>
+  </div>
+
+  <div id="zoom" class="modal">
+    <img id="zoomFoto" src="" alt="Zoom Foto">
+  </div>
+
+  <div id="toast"></div>
+
+  <button id="atas" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Kembali ke atas">↑</button>
+
+  <footer>
+    <p>&copy; 2026 <a href="index.html">KAWAII CRAFT STORE</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

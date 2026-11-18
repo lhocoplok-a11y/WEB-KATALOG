@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tentang Kami - KAWAII CRAFT STORE</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem("gelap") === "1") {
+      document.documentElement.classList.add("gelap");
+    }
+  </script>
+</head>
+<body>
+
+  <nav id="bar">
+    <a href="index.html" class="logo-mini">
+      <img class="logo" src="logo.jpeg" alt="Logo">
+      <span class="logo-text">KAWAII CRAFT</span>
+    </a>
+
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#katalog">Produk</a>
+      <a href="tentang.html">Tentang kami</a>
+    </div>
+
+    <div class="nav-kanan">
+      <button id="btnGelap" onclick="toggleGelap()" title="Ubah Mode Gelap/Terang">🌙</button>
+    </div>
+  </nav>
+
+  <header>
+    <img src="logo.jpeg" alt="Logo">
+    <h1>Tentang Kami</h1>
+  </header>
+
+  <section class="konten">
+
+    <h2>Apa itu KAWAII CRAFT STORE?</h2>
+
+    <p>
+      KAWAII CRAFT STORE adalah toko yang menjual
+      berbagai barang lucu dan handmade (buatan tangan).
+      Setiap produk dibuat dengan teliti dan penuh kreativitas,
+      sehingga memiliki sentuhan unik dan menarik.
+    </p>
+
+    <h2>Produk Kami</h2>
+
+    <p>
+      <b>Poster Custom:</b>
+      Poster anime dan karakter favorit dengan cetakan
+      berwarna dan desain bebas custom (Tersedia ukuran A5, A4, dan A3).
+    </p>
+
+    <p>
+      <b>Poster Jadi:</b>
+      Poster siap pilih berbagai karakter populer seperti Naruto,
+      Madara, Baskara, dan Aizen dengan cetakan berkualitas tinggi (Tersedia ukuran A5, A4, dan A3).
+    </p>
+
+    <p>
+      <b>Frame Foto Flanel:</b>
+      Frame foto handmade dari kain flanel dengan
+      hiasan bunga, kancing, dan berbagai dekorasi lucu.
+      Dilengkapi dengan gantungan kunci.
+    </p>
+
+    <h2>Kenapa Pilih Kami?</h2>
+
+    <p>
+      ✔ Dibuat dengan tangan sendiri<br>
+      ✔ Desain lucu dan unik<br>
+      ✔ Harga terjangkau<br>
+      ✔ Produk dapat dipesan dengan mudah<br>
+      ✔ Pemesanan melalui WhatsApp
+    </p>
+
+    <h2>Mau Pesan?</h2>
+
+    <p>
+      Pilih produk favoritmu di halaman toko,
+      masukkan ke keranjang atau klik tombol pesan.
+      Selanjutnya isi data pemesanan dan lanjutkan
+      melalui WhatsApp.
+    </p>
+
+    <a class="kembali tombol" href="index.html#katalog">Lihat Produk</a>
+
+  </section>
+
+  <footer>
+    <p>&copy; 2026 <a href="index.html">KAWAII CRAFT STORE</a>. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
